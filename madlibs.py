@@ -57,13 +57,13 @@ def show_madlib():
     person_choice = request.args.get("person")
     color_choice = request.args.get("color")
     noun_choice = request.args.get("noun")
-    adjective_choice = request.args.get("adjective")
+    adjective_choices = request.args.getlist("adjective")
 
     return render_template("madlib.html",
                             person=person_choice,
                             color=color_choice,
                             noun=noun_choice,
-                            adjective=adjective_choice)
+                            adjectives=adjective_choices)
 @app.route('/goodbye')
 def say_goodbye():
     return render_template("goodbye.html")
