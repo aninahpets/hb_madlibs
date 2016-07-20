@@ -1,11 +1,8 @@
-<!doctype html>
-<html>
-<head>
-  <title>Madlibs!</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Madlibs!{% endblock %}
 
-    <form action="/madlib">
+{% block content %}
+    <form action="/madlib", method="POST">
         <h3>Please fill out the following:</h3>
         <br>
         Person: <input type="text" name="person">
@@ -33,5 +30,8 @@
         <br>
         <input type="submit">
     </form>
-</body>
-</html>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

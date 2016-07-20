@@ -50,20 +50,23 @@ def show_madlib_form():
     else:
         return render_template("game.html")
 
-@app.route('/madlib')
+@app.route('/madlib', methods=["GET","POST"])
 def show_madlib():
     """Fills in the template with the picked values."""
+    if request.method == 'POST':
+        person_choice = request.form.get("person")
+        color_choice = request.form.get("color")
+        noun_choice = request.form.get("noun")
+        adjective_choices = request.form.getlist("adjective")
 
-    person_choice = request.args.get("person")
-    color_choice = request.args.get("color")
-    noun_choice = request.args.get("noun")
-    adjective_choices = request.args.getlist("adjective")
+        return render_template("madlib.html",
+                                person=person_choice,
+                                color=color_choice,
+                                noun=noun_choice,
+                                adjectives=adjective_choices)
+    else:
+        return render_template("game.html")
 
-    return render_template("madlib.html",
-                            person=person_choice,
-                            color=color_choice,
-                            noun=noun_choice,
-                            adjectives=adjective_choices)
 @app.route('/goodbye')
 def say_goodbye():
     return render_template("goodbye.html")
